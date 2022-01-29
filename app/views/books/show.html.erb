@@ -8,6 +8,7 @@
 <p>
   <strong>Memo:</strong>
   <%= @book.memo %>
+  <%= ENV["COVERBAND_REDIS_URL"] %>
 </p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
