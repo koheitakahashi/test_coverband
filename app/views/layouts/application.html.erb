@@ -6,11 +6,37 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <%= javascript_pack_tag 'application'%>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 80%;
+        width: 50%
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
-
   <body>
     <%= yield %>
+    <script>
+      function initMap() {
+        let map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 35.6594666, lng: 139.7005536 },
+          zoom: 15,
+        });
+        let marker = new google.maps.Marker({
+          position: { lat: 35.6594666, lng: 139.7005536 },
+          map: map,
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= "#{ENV['GOOGLE_MAP_API_KEY']}" %>&region=JP&language=ja&callback=initMap" async defer></script>
   </body>
 </html>
