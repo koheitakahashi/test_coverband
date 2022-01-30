@@ -21,7 +21,13 @@
     <%= form.text_area :memo %>
   </div>
 
+  <div class="select_box">
+    <%= form.label :prefeture %>
+    <%= form.collection_select(:prefecture_id, Prefecture.all, :id, :name, {})%>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>
